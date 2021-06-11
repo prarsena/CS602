@@ -8,18 +8,20 @@ apikey = "6276f196fd965d95349c4d3c233e20d8"
 # https://openweathermap.org/api/one-call-api#history
 
 # Figure out how to obtain timedate stamp for last 5 days.
-# now()
-datestamps = [123, 12, 1234, 124]
+SECONDS_IN_A_DAY = 60 * 60 * 24
 now = datetime.today()
-lastnightmidnight = datetime.combine(now, time.min)
+midnight = datetime.combine(now, time.min)
 
-print(lastnightmidnight)
-print(int(lastnightmidnight.timestamp()))
+midnightLastNight = midnight.timestamp()
+midnightYesterday = int(midnightLastNight) - SECONDS_IN_A_DAY
+midnightTwoDaysAgo = midnightYesterday - SECONDS_IN_A_DAY
+midnightThreeDaysAgo = midnightTwoDaysAgo - SECONDS_IN_A_DAY
+midnightFourDaysAgo = midnightThreeDaysAgo - SECONDS_IN_A_DAY
 
-secondsInADay = 60 * 60 * 24
-yesterdaymidnight = int(lastnightmidnight.timestamp()) - secondsInADay
-print(yesterdaymidnight)
-
+datestamps = [int(midnightLastNight), midnightYesterday, midnightTwoDaysAgo, midnightThreeDaysAgo, midnightFourDaysAgo ]
+for i in datestamps:
+    print(i)
+    print(datetime.fromtimestamp(i).strftime('%Y-%m-%d %H:%M:%S %Z'))
 
 # make 5 calls to the daily/ hourly data.
 # for i in datestamps:
