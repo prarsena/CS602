@@ -52,8 +52,10 @@ for dayOfWeatherData in weatherData:
         timeInfo_utc = datetime.utcfromtimestamp(hourlyDatestamp).strftime('%Y-%m-%d %H:%M:%S %Z')
         timeInfo_mytime = datetime.fromtimestamp(hourlyDatestamp).strftime('%Y-%m-%d %H:%M:%S %Z')
         tempInfo = dayOfWeatherData.get('hourly')[hour].get('temp')
+        feelInfo = dayOfWeatherData.get('hourly')[hour].get('feels_like')
 
         print("UTC: " + timeInfo_utc)
         print("EDT: " + timeInfo_mytime)
-        print(tempInfo)
+        print("Temp (F): ", tempInfo)
+        print("Temp Feel (F): ", feelInfo)
 
